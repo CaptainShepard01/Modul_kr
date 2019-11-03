@@ -67,7 +67,7 @@ int Posfinder(char* s, char t)
 	cout << endl;
 }
 
-/*3*/void Task_3()
+/*3*/    void Task_3()
 {
 	char* s = new char[1000];
 	cout << "Enter your string:\n";
@@ -113,7 +113,7 @@ void Prtr(int n, int m)
 	delete[] Tr;
 }
 
-/*2*/void Task_2()
+/*2*/  void Task_2()
 {
 	int n, m;
 	cout << "Enter the number of triangolas: ";
@@ -138,11 +138,6 @@ bool ok(char* s) {
 
 void Palindromer(char* s)
 {
-	char* as = new char[strlen(s) + 1];
-	for (int i = 0; i < strlen(s); ++i) {
-		as[i] = s[i];
-	}
-
 	int charcnt = 1;
 	int cnt = 0;
 	for (int l = 0; l <= (strlen(s)-1) / 2; ++l) {
@@ -154,35 +149,36 @@ void Palindromer(char* s)
 		for (int j = 0; j < charcnt; ++j) {
 			s2[j] = s[strlen(s) - 1 - j - charcnt];
 		}
-		if (!strcmp(s1, s2))cnt = strlen(s) - 1 - charcnt;
+		if (strcmp(s1, s2)==0)cnt = strlen(s) - charcnt - 1;
 		++charcnt;
 		delete[] s1;
 		delete[] s2;
 	}
-	cout << cnt << endl;
 
-	int k = strlen(s);
+	char* s1 = new char[cnt + 1];
+	s1[cnt + 1] = '\0';
+	for (int i = 0; i <= cnt; ++i) {
+		s1[i] = s[i];
+	}
+
+	char* sx = new char[cnt+1];
+	sx[cnt + 1] = '\0';
+	for (int k = 0; k <= cnt; ++k) {
+		sx[k] = s1[strlen(s1)-1-k];
+	}
 	if (ok(s)) {
 		cout << s << endl;
 		return;
 	}
 	else {
-		char* sx = new char[cnt + 1];
-		for (int i = 0; i < cnt + 1; ++i) {
-			sx[i] = s[i];
-		}
-		for (int i = 0; i < cnt +1; ++i) {
-			sx[i] = as[strlen(s) - 1 - i];
-		}
-		cout << as << sx;
-		delete[] sx;
+		cout << "Palindrom:\n";
+		cout << s1 << sx;
 		return;
 	}
-	
-	delete[] as;
+	delete[] s1;
 }
 
-/*4*/void Task_4()
+/*4*/  void Task_4()
 {
 	char* s = new char[100];
 	cout << "Enter the string:\n";
@@ -233,7 +229,7 @@ void MatrSort(int** m, int a, int b)
 	delete[] s;
 }
 
-/*5*/void Task_5()
+/*5*/  void Task_5()
 {
 	int a, b;
 	cout << "Enter number of lines of the matrix: ";
