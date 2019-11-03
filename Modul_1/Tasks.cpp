@@ -155,25 +155,36 @@ void Palindromer(char* s)
 		delete[] s2;
 	}
 
-	char* s1 = new char[cnt + 1];
+	char* s1 = new char[cnt + 2];
 	s1[cnt + 1] = '\0';
 	for (int i = 0; i <= cnt; ++i) {
 		s1[i] = s[i];
 	}
-
-	char* sx = new char[cnt+1];
+	int z = strlen(s);
+	char* sx = new char[cnt+2];
 	sx[cnt + 1] = '\0';
 	for (int k = 0; k <= cnt; ++k) {
 		sx[k] = s1[strlen(s1)-1-k];
 	}
 	if (ok(s)) {
+		cout << "Palindrom:\n";
 		cout << s << endl;
 		return;
 	}
-	else {
+	if(strlen(s1)!=1) {
 		cout << "Palindrom:\n";
-		cout << s1 << sx;
+		cout << s1 << sx << endl;
 		return;
+	}
+	else {
+		char* s3 = new char[strlen(s)+1];
+		s3[strlen(s)] = '\0';
+		for (int i = 0; i < strlen(s); ++i) {
+			s3[i] = s[strlen(s) - 1 - i];
+		}
+		cout << "Palindrom:\n";
+		cout << s << s3 << endl;
+		delete[] s3;
 	}
 	delete[] s1;
 }
