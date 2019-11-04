@@ -18,7 +18,7 @@ bool prtr(treug t);
 void Prtr(int n, int m);
 void Task_2();
 
-int Posfinder(char* s, char t);
+void Posfinder(char* s, char t);
 void Task_3();
 
 bool ok(char* s);

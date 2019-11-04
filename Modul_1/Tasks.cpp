@@ -41,19 +41,20 @@ double sum(double eps)
 	return rez;
 }
 
-int Posfinder(char* s, char t)
+void Posfinder(char* s, char t)
 {
 	int pos = 0;
 	for (int i = 0; i < strlen(s); ++i) {
 		if (s[i] == t) {
 			pos = i + 1;
 			cout << "Position: ";
-			return pos;
+			cout << pos;
+			return;
 		}
 	}
 	if (pos == 0) {
-		cout << "There is no t-char in this strinf!\n";
-		return -1;
+		cout << "There is no t-char in this string!\n";
+		return;
 	}
 }
 
@@ -77,12 +78,19 @@ int Posfinder(char* s, char t)
 /*3*/    void Task_3()
 {
 	char* s = new char[1000];
-	cout << "Enter your string:\n";
+	char* tg = new char[1000];
+	cout << "Enter your string: ";
 	cin.getline(s, 1000);
 	char t;
-	cout << "Enter char-target: ";
-	cin >> t;
-	cout << Posfinder(s, t) << endl;
+	int pos;
+	cout << "Enter string-target: ";
+	cin.getline(tg, 1000);
+	cout << "Enter the position of char-target: ";
+	cin >> pos;
+	if (pos != 0)t = tg[pos - 1];
+	else t = tg[0];
+	Posfinder(s, t);
+	cout << endl;
 	cout << "If you want to do another task, press space!\n";
 	int code;
 	code = _getch();
@@ -101,12 +109,12 @@ void Prtr(int n, int m)
 {
 	treug* Tr = new treug[n];
 	for (int i = 0; i < n; ++i) {
-			Tr[i].a.x = rand() % (2 * m) - m;
-			Tr[i].a.y = rand() % (2 * m) - m;
-			Tr[i].b.x = rand() % (2 * m) - m;
-			Tr[i].b.y = rand() % (2 * m) - m;
-			Tr[i].c.x = rand() % (2 * m) - m;
-			Tr[i].c.y = rand() % (2 * m) - m;
+		Tr[i].a.x = rand() % (2 * m) - m;
+		Tr[i].a.y = rand() % (2 * m) - m;
+		Tr[i].b.x = rand() % (2 * m) - m;
+		Tr[i].b.y = rand() % (2 * m) - m;
+		Tr[i].c.x = rand() % (2 * m) - m;
+		Tr[i].c.y = rand() % (2 * m) - m;
 	}
 	cout << "Show us right triangolas (if there are some):\n";
 	cout << endl;
@@ -134,6 +142,14 @@ void Prtr(int n, int m)
 	cin >> n;
 	cout << "Enter max coordinate (integer): ";
 	cin >> m;
+	if (m <= 0 || n <= 0) {
+		cout << "No!\n";
+		cout << "If you want to do another task, press space!\n";
+		int code;
+		code = _getch();
+		if (code == 32) { main(); }
+		else return;
+	}
 	Prtr(n, m);
 	cout << endl;
 	cout << "If you want to do another task, press space!\n";
@@ -159,7 +175,7 @@ void Palindromer(char* s)
 {
 	int charcnt = 1;
 	int cnt = 0;
-	for (int l = 0; l <= (strlen(s)-1) / 2; ++l) {
+	for (int l = 0; l <= (strlen(s) - 1) / 2; ++l) {
 		char* s1 = new char[charcnt];
 		char* s2 = new char[charcnt];
 		for (int j = 0; j < charcnt; ++j) {
@@ -168,7 +184,7 @@ void Palindromer(char* s)
 		for (int j = 0; j < charcnt; ++j) {
 			s2[j] = s[strlen(s) - 1 - j - charcnt];
 		}
-		if (strcmp(s1, s2)==0)cnt = strlen(s) - charcnt - 1;
+		if (strcmp(s1, s2) == 0)cnt = strlen(s) - charcnt - 1;
 		++charcnt;
 		delete[] s1;
 		delete[] s2;
@@ -180,23 +196,23 @@ void Palindromer(char* s)
 		s1[i] = s[i];
 	}
 	int z = strlen(s);
-	char* sx = new char[cnt+2];
+	char* sx = new char[cnt + 2];
 	sx[cnt + 1] = '\0';
 	for (int k = 0; k <= cnt; ++k) {
-		sx[k] = s1[strlen(s1)-1-k];
+		sx[k] = s1[strlen(s1) - 1 - k];
 	}
 	if (ok(s)) {
 		cout << "Palindrom:\n";
 		cout << s << endl;
 		return;
 	}
-	if(strlen(s1)!=1) {
+	if (strlen(s1) != 1) {
 		cout << "Palindrom:\n";
 		cout << s1 << sx << endl;
 		return;
 	}
 	else {
-		char* s3 = new char[strlen(s)+1];
+		char* s3 = new char[strlen(s) + 1];
 		s3[strlen(s)] = '\0';
 		for (int i = 0; i < strlen(s); ++i) {
 			s3[i] = s[strlen(s) - 1 - i];
@@ -221,6 +237,15 @@ void Palindromer(char* s)
 	else return;
 }
 
+void Swap(int*& t1, int*& t2, int a)
+{
+	for (int i = 0; i < a; ++i) {
+		int temp = t1[i];
+		t1[i] = t2[i];
+		t2[i] = temp;
+	}
+}
+
 void MatrSort(int** m, int a, int b)
 {
 	int* s = new int[b];
@@ -234,25 +259,41 @@ void MatrSort(int** m, int a, int b)
 			}
 		}
 	}
-	/*for (int i = 0; i < b; ++i) {
+	for (int i = 0; i < b; ++i) {
 		cout << s[i] << "  ";
-	}*/
+	}
+	cout << endl;
 
-	int min = 0;
-	for (int i = 0; i < a; ++i) {
-		for (int j = 0; j < b; ++j) {
-			min = s[j];
-			for (int k = j; k < b; ++k) {
-				if (s[k] < min) {
-					int temp = m[i][k];
-					m[i][k] = m[i][j];
-					m[i][j] = temp;
+	cout << "Sorted Matrix:\n";
+
+	for (int i = 0; i < b; ++i) {
+		for (int j = i; j < b; ++j) {
+			if (s[j] < s[i]) {
+				int* temp1 = new int[a];
+				int* temp2 = new int[a];
+				for (int k = 0; k < a; ++k) {
+					temp1[k] = m[k][j];
 				}
+				for (int k = 0; k < a; ++k) {
+					temp2[k] = m[k][i];
+				}
+				Swap(temp1, temp2, a);
+				int temp = s[j];
+				s[j] = s[i];
+				s[i] = temp;
+				for (int k = 0; k < a; ++k) {
+					m[k][j] = temp1[k];
+				}
+				for (int k = 0; k < a; ++k) {
+					m[k][i] = temp2[k];
+				}
+				delete[] temp1;
+				delete[] temp2;
 			}
 		}
 	}
 
-	cout << "Sorted Matrix:\n";
+
 
 	for (int i = 0; i < a; ++i) {
 		for (int j = 0; j < b; ++j) {
@@ -271,6 +312,14 @@ void MatrSort(int** m, int a, int b)
 	cin >> a;
 	cout << "Enter number of columns of the matrix: ";
 	cin >> b;
+	if (a <= 0 || b <= 0) {
+		cout << "No!\n";
+		cout << "If you want to do another task, press space!\n";
+		int code;
+		code = _getch();
+		if (code == 32) { main(); }
+		else return;
+	}
 	int** m = new int* [a];
 	for (int i = 0; i < a; ++i) {
 		m[i] = new int[b];
