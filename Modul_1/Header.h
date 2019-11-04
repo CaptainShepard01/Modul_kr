@@ -29,4 +29,6 @@ void Task_4();
 void MatrSort(int** m, int a, int b);
 void Task_5();
 
+int main();
+
 

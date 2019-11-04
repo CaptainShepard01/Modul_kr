@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include <conio.h>
 #include <cstdlib>
 #include "Header.h"
 
@@ -65,6 +66,12 @@ int Posfinder(char* s, char t)
 	cout << "Result: ";
 	cout << sum(eps);
 	cout << endl;
+	cout << "If you want to do another task, press space!\n";
+	int code;
+	code = _getch();
+	if (code == 32) { main(); }
+	else return;
+
 }
 
 /*3*/    void Task_3()
@@ -76,6 +83,11 @@ int Posfinder(char* s, char t)
 	cout << "Enter char-target: ";
 	cin >> t;
 	cout << Posfinder(s, t) << endl;
+	cout << "If you want to do another task, press space!\n";
+	int code;
+	code = _getch();
+	if (code == 32) { main(); }
+	else return;
 }
 
 float dist(point a, point b) { return sqrt(pow((a.x - b.x), 2) + pow((a.y - b.y), 2)); }
@@ -122,6 +134,11 @@ void Prtr(int n, int m)
 	cin >> m;
 	Prtr(n, m);
 	cout << endl;
+	cout << "If you want to do another task, press space!\n";
+	int code;
+	code = _getch();
+	if (code == 32) { main(); }
+	else return;
 }
 
 bool ok(char* s) {
@@ -195,6 +212,11 @@ void Palindromer(char* s)
 	cout << "Enter the string:\n";
 	cin.getline(s, 100);
 	Palindromer(s);
+	cout << "If you want to do another task, press space!\n";
+	int code;
+	code = _getch();
+	if (code == 32) { main(); }
+	else return;
 }
 
 void MatrSort(int** m, int a, int b)
@@ -259,4 +281,9 @@ void MatrSort(int** m, int a, int b)
 	}
 	cout << endl;
 	MatrSort(m, a, b);
+	cout << "If you want to do another task, press space!\n";
+	int code;
+	code = _getch();
+	if (code == 32) { main(); }
+	else return;
 }
