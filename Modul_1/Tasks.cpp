@@ -114,14 +114,16 @@ void Prtr(int n, int m)
 	for (int i = 0; i < n; ++i) {
 		if (prtr(Tr[i])) {
 			cout << "Triangola:\n";
-			cout << "A = " << "(" << Tr[i].a.x << ", " << Tr[i].a.y  << ")" << endl;
+			cout << "A = " << "(" << Tr[i].a.x << ", " << Tr[i].a.y << ")" << endl;
 			cout << "B = " << "(" << Tr[i].b.x << ", " << Tr[i].b.y << ")" << endl;
 			cout << "C = " << "(" << Tr[i].c.x << ", " << Tr[i].c.y << ")" << endl;
 			cout << endl;
 		}
+		else count++;
 	}
 	cout << endl;
-	cout << "That's all right triangolas!\n";
+	if (count == n)cout << "There are no such triangolas.\n";
+	else cout << "That's all right triangolas!\n";
 	delete[] Tr;
 }
 
