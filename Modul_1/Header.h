@@ -25,7 +25,7 @@ bool ok(char* s);
 void Palindromer(char* s);
 void Task_4();
 
-
+void Swap(int*& t1, int*& t2, int a);
 void MatrSort(int** m, int a, int b);
 void Task_5();
 
