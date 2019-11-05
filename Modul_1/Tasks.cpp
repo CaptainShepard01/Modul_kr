@@ -3,6 +3,7 @@
 #include <conio.h>
 #include <cstdlib>
 #include "Header.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -297,7 +298,7 @@ void MatrSort(int** m, int a, int b)
 
 	for (int i = 0; i < a; ++i) {
 		for (int j = 0; j < b; ++j) {
-			cout << m[i][j] << " ";
+			cout << setw(3) << m[i][j] << " ";
 		}
 		cout << endl;
 	}
